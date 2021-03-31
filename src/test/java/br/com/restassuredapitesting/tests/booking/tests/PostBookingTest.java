@@ -50,7 +50,7 @@ public class PostBookingTest extends BaseTest {
     @Category(E2e.class)
     @DisplayName("Validar a criação de reservas de mais de um livro em sequência")
     public void validarCriarResevasSequenciais(){
-        postBookingRrequest.criarReservaSequencial(Utils.validPayloadBooking(), Utils.validPayloadBooking())
+        postBookingRrequest.criarReservaSequencial(Utils.validPayloadBooking(), Utils.validPayloadBooking(), Utils.validPayloadBooking())
                 .then()
                 .assertThat()
                 .statusCode(200)

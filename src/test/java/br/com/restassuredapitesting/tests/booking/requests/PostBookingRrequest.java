@@ -20,14 +20,16 @@ public class PostBookingRrequest {
                 .post("booking");
 
     }
+
     @Step("Criar uma reserva com dois payloads sequenciais.")
-    public Response criarReservaSequencial(JSONObject payload, JSONObject payload2){
+    public Response criarReservaSequencial(JSONObject payload, JSONObject payload2, JSONObject payload3 ){
 
         return given()
                 .header("Content-Type", "application/json")
                 .header("Accepted", "application/json")
                 .body(payload)
-                .body(payload)
+                .body(payload2)
+                .body(payload3)
                 .when()
                 .post("booking");
 
