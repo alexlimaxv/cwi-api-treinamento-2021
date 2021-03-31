@@ -57,7 +57,7 @@ public class GetBookingTest extends BaseTest {
     @Category(Contract.class)
     @DisplayName("Garantir contrato de uma reserva específica.")
     public void garantirContratoReservaEspecifica() throws Exception{
-        int idDaReserva = getBookingRequest.allBookings().then().statusCode(200).extract().path("[2].bookingid");
+        int idDaReserva = getBookingRequest.allBookings().then().statusCode(200).extract().path("[0].bookingid");
 
         getBookingRequest.buscarReservaEspecifica(idDaReserva).then()
                 .statusCode(200)
@@ -71,7 +71,7 @@ public class GetBookingTest extends BaseTest {
     @DisplayName("Validar uma reserva específica.")
     public void validarReservaEspecifica() throws Exception{
 
-        int idDaReserva = getBookingRequest.allBookings().then().statusCode(200).extract().path("[10].bookingid");
+        int idDaReserva = getBookingRequest.allBookings().then().statusCode(200).extract().path("[5].bookingid");
         getBookingRequest.buscarReservaEspecifica(idDaReserva).then()
                 .assertThat()
                 .statusCode(200)

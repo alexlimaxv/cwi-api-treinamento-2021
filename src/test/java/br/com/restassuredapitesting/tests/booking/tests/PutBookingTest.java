@@ -83,12 +83,11 @@ public class PutBookingTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Category(E2e.class)
     @DisplayName("Alterar Uma Reserva inexistente")
-    @Ignore
     public void validarAlterarReservaInexistente() throws Exception{
 
-        int idReserva = 999;
+        int idInexistent = 999;
 
-        putBookingRequest.alterarUmaReservaComToken(idReserva, Utils.validPayloadBooking()).then()
+        putBookingRequest.alterarUmaReservaComToken(idInexistent, Utils.validPayloadBooking()).then()
                 .assertThat()
                 .statusCode(405);
 

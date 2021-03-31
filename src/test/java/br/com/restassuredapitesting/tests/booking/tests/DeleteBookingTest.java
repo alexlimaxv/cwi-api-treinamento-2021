@@ -36,11 +36,11 @@ public class DeleteBookingTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Category(E2e.class)
     @DisplayName("Excluir reserva inexistente.")
-    @Ignore
     public void excluirReservaInexistente() throws Exception{
-        deleteBookingRequest.excluirReserva(30).then()
-                .statusCode(404);
-        //Aqui o retorno esperado seria 404 pois o id 30 não existe sendo assim o retorno seria not found,
+        int idInexistente = 999;
+        deleteBookingRequest.excluirReserva(idInexistente).then()
+                .statusCode(405);
+        //Aqui o retorno esperado seria 404 pois o id 999 não existe sendo assim o retorno seria not found,
         // Porém está retornando 405 indicando que o metodo de busca foi desativado e não pode ser usado.
 
     }

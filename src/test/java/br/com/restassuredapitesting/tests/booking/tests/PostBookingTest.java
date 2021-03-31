@@ -9,6 +9,7 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.junit4.DisplayName;
 import org.json.simple.JSONObject;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -28,18 +29,20 @@ public class PostBookingTest extends BaseTest {
                 .then()
                 .assertThat().statusCode(200)
                 .body("booking.firstname", equalTo("Ronaldo"));
+                //Aqui deveria retornar 201 que indica que algo foi criado,
+                // mas o retorno padrão é 200
     }
     @Test
     @Severity(SeverityLevel.NORMAL)
     @Category(E2e.class)
-    @DisplayName("Validar retorno 500 quando payload da reserva estivar inválido")
+    @DisplayName("Validar retorno 500 quando payload da reserva estiver inválido")
     public void validarReservaCOmPayloadInvalido() throws Exception {
 
         postBookingRrequest.criarReserva(Utils.invalidPayloadBooking())
                 .then()
                 .assertThat()
                 .statusCode(500);
-                //Penso que o retorno deveria ser o 400, pois há um erro de semantica
+                //Penso que o retorno deveria ser o 400, pois há um erro de sintaxe
                 //No envio do payload
     }
     @Test
@@ -49,7 +52,10 @@ public class PostBookingTest extends BaseTest {
     public void validarCriarResevasSequenciais(){
         postBookingRrequest.criarReservaSequencial(Utils.validPayloadBooking(), Utils.validPayloadBooking())
                 .then()
-                .assertThat().statusCode(200)
+                .assertThat()
+                .statusCode(200)
+                //Aqui deveria retornar 201 que indica que algo foi criado,
+                // mas o retorno padrão é 200
         ;
 
     }
@@ -65,7 +71,7 @@ public class PostBookingTest extends BaseTest {
                 .assertThat()
                 .statusCode(500)
         ;
-        //Penso que o retorno deveria ser o 400, pois há um erro de semantica
+        //Penso que o retorno deveria ser o 400, pois há um erro de sintaxe
         //No envio do payload
 
     }
@@ -79,7 +85,7 @@ public class PostBookingTest extends BaseTest {
         postBookingRrequest.novaReservaComHeaderInvalido(Utils.validPayloadBooking()).then()
                 .assertThat()
                 .statusCode(418);
-                //Penso que o retorno deveria ser o 400, pois há um erro de semantica
+                //Penso que o retorno deveria ser o 400, pois há um erro de sintaxe
                 //No envio do payload, porém aceitei a piada em referência ao 1º de abril
     }
 
